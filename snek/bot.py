@@ -115,9 +115,9 @@ class Game():
     
     async def endgame(self):
         await self.message.clear_reactions()
-        endmessage = (str(self.message.content)
-                      .replace(Game.Tiles["Snake"], Game.Tiles["Dead"])
-                      .replace("Apples eaten", "YOU DIED YOU FUCKING RETARD\nScore"))
+        endmessage = (sub(r"[\w: ]", "", 
+                         str(self.message.content).replace(Game.Tiles["Snake"], Game.Tiles["Dead"]))
+                         + f"YOU FUCKING DIED YOU RETARD\nScore: {self.score}")
         await self.message.edit(content=endmessage)
         players.pop(players.index(self.player))
         
