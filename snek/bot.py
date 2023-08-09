@@ -119,7 +119,7 @@ class Game():
                          str(self.message.content).replace(Game.Tiles["Snake"], Game.Tiles["Dead"]))
                          + f"YOU FUCKING DIED YOU RETARD\nScore: {self.score}")
         await self.message.edit(content=endmessage)
-        players.pop(players.index(self.player))
+        players.remove(self.player)
         
     async def gameloop(self):
         self.snake.x+=self.snake.velocity.x
@@ -144,6 +144,6 @@ class Game():
 @snek.command(name="start", help="Start a new game of snake")
 async def start(ctx):
     if ctx.message.author in players:
-        return await ctx.send("You're already in a game!")
+        return await ctx.reply("You're already in a game!")
     new_game = Game(ctx, ctx.message.author)
     await new_game.gameloop()
