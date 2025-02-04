@@ -117,7 +117,7 @@ class Game():
         await self.message.clear_reactions()
         endmessage = (sub(r"[\w: ]", "", 
                          str(self.message.content).replace(Game.Tiles["Snake"], Game.Tiles["Dead"]))
-                         + f"YOU FUCKING DIED YOU RETARD\nScore: {self.score}")
+                         + f"YOU DIED\nScore: {self.score}")
         await self.message.edit(content=endmessage)
         players.remove(self.player)
         
